@@ -1,0 +1,12 @@
+- check that everything is written correctly
+- decode int funcs output 64 bit ints ALWAYS( bad )
+- refference data? (is sent seperately)
+- CMAKE connectivity
+
+- XML CME/LSE tests
+- include PCAP tests
+    -(FIX availible on wireshark)
+    - can use python repsf
+
+- Transitiion to SBE - easier
+

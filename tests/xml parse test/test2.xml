@@ -1,0 +1,108 @@
+<templates>
+    <!-- Simple Administrative Message -->
+    <template name="Heartbeat" id="10">
+        <string name="Status">
+            <constant/>
+        </string>
+        <uInt32 name="SequenceNumber">
+            <increment/>
+        </uInt32>
+    </template>
+
+    <!-- Flat Data Message -->
+    <template name="SecurityDefinition" id="20">
+        <string name="Symbol">
+            <copy/>
+        </string>
+        <string name="SecurityExchange">
+            <constant value="NASDAQ"/>
+        </string>
+        <decimal name="StrikePrice">
+            <copy/>
+        </decimal>
+        <int32 name="MaturityDate">
+            <copy/>
+        </int32>
+        <uInt32 name="MinTradeVol">
+            <default value="100"/>
+        </uInt32>
+    </template>
+
+    <!-- Deeply Nested Sequences (The CPU stress test) -->
+    <template name="MarketDataSnapshot" id="30">
+        <string name="Symbol">
+            <copy/>
+        </string>
+        <uInt64 name="Timestamp">
+            <delta/>
+        </uInt64>
+
+        <!-- Bids Branch -->
+        <sequence name="Bids">
+            <length name="NoBids"/>
+            <decimal name="BidPrice">
+                <delta/>
+            </decimal>
+            <uInt32 name="BidSize"/>
+            <string name="MarketMaker">
+                <copy/>
+            </string>
+        </sequence>
+
+        <!-- Asks Branch -->
+        <sequence name="Asks">
+            <length name="NoAsks"/>
+            <decimal name="AskPrice">
+                <delta/>
+            </decimal>
+            <uInt32 name="AskSize"/>
+            <string name="MarketMaker">
+                <copy/>
+            </string>
+        </sequence>
+    </template>
+
+    <!-- Complex Grouping and Incrementors -->
+    <template name="IncrementalRefresh" id="40">
+        <uInt32 name="MessageSequenceNumber">
+            <increment/>
+        </uInt32>
+        <sequence name="MDEntries">
+            <length name="NoMDEntries"/>
+            <uInt32 name="MDUpdateAction">
+                <copy/>
+            </uInt32>
+            <string name="Symbol">
+                <copy/>
+            </string>
+            <group name="PriceDetails">
+                <decimal name="EntryPrice">
+                    <delta/>
+                </decimal>
+                <uInt32 name="EntrySize">
+                    <delta/>
+                </uInt32>
+            </group>
+            <string name="TradingSessionID">
+                <default value="1"/>
+            </string>
+        </sequence>
+    </template>
+
+    <!-- Byte Vectors and Optional Fields -->
+    <template name="OrderExecution" id="50">
+        <uInt64 name="OrderID">
+            <delta/>
+        </uInt64>
+        <string name="ExecType">
+            <constant value="Filled"/>
+        </string>
+        <decimal name="LastPx">
+            <copy/>
+        </decimal>
+        <uInt32 name="LastQty"/>
+        <byteVector name="Checksum">
+            <copy/>
+        </byteVector>
+    </template>
+</templates>

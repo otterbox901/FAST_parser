@@ -1,0 +1,19 @@
+<templates>
+    <template name="StockTrade" id="101">
+        <string name="Symbol">
+            <copy/>
+        </string>
+        <int32 name="TradeVolume"/>
+        <sequence name="Bids">
+            <length name="NoBids"/>
+            <int32 name="Price">
+                <delta/>
+            </int32>
+        </sequence>
+    </template>
+    <template name="Heartbeat" id="99">
+        <string name="Status">
+            <constant/>
+        </string>
+    </template>
+</templates>
